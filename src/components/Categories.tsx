@@ -1,17 +1,23 @@
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
+import { BASE_URL } from "../utils/constants";
 export default function Categories() {
   // product categories 
   const [categories, setCategories] = useState([]);
 
   //fetch the categories 
   useEffect(() => {
+
     const fetchCategories = async () => {
-      const response = await axios.get(`http://localhost:8000/api/categories`);
-      console.log(response);
-      setCategories(response.data.data);
+      try {
+        const response = await axios.get(`${BASE_URL}/categories`);
+        console.log(response);
+        setCategories(response.data.data);
+      } catch (error) {
+        console.log(error)
+      }
     };
     // callback
     fetchCategories();
@@ -19,7 +25,7 @@ export default function Categories() {
   return (
     <div className="mt-10">
       <h2>Product Category</h2>
-      <div className="flex gap-4 mt-8 flex-wrap pb-10">
+      <div className="flex gap-4 mt-8 flex-wrap pb-10 justify-center">
         {categories.slice(0, 5).map((category) => {
           return (
             <Link
@@ -33,9 +39,11 @@ export default function Categories() {
               key={category.categoryId}
             >
               <div className="flex flex-col items-center min-w-[210px] max-w-[220px] min-h-full  bg-white rounded-md p-4">
-                <img
+                <Image
                   src={`/${category.categoryName}.jpg`}
                   alt=""
+                  width={200}
+                  height={200}
                   className="max-h-[200px]"
                 />
                 <h2 className="text-black justify-end">
