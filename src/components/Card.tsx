@@ -1,24 +1,10 @@
-type CardProps = {
-  productDetails: {
-    productName: string;
-    productId: string;
-    originalPrice: number;
-    discountedPrice: number;
-    description: string;
-    productImages: {
-      productImageUrl: string;
-    }[];
-  };
-  key: Number;
-};
 
 // import Image from 'next/image'
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-export default function Card(props: CardProps) {
-  // console.log(key)
-  const { productDetails } = props;
+import { ICardProps } from "../interfaces/ICardProps";
+export default function Card({productDetails}: ICardProps) {
   // destructuring the productDetails object
   const {
     productName,
@@ -28,7 +14,6 @@ export default function Card(props: CardProps) {
     description,
     productImages,
   } = productDetails;
-  console.log(productImages);
   return (
     <div
       id={`${productId}`}
@@ -39,14 +24,14 @@ export default function Card(props: CardProps) {
           width={150}
           height={200}
           className="p-1 md:p-8 rounded-t-lg  max-h-[150px] max-w-[100px] md:max-h-[200px] md:max-w-[200px]"
-          src={`${productImages[0].productImageUrl}`}
+          src={`${productImages[0]?.productImageUrl}`}
           alt="product image"
         />
       </div>
       <div className="px-2 md:px-8 p-2 md:py-6 md:pb-8 bg-gradient-to-b  from-card-primary to-[#3c21771a] rounded-r-lg md:rounded-none md:rounded-b-lg sm:none  max-h-[195px]">
         <div>
-          <h4 className="font-semibold">{productName.slice(0, 20)}</h4>
-          <p className="  tracking-tight ">{description.slice(0, 20)}</p>
+          <h4 className="font-semibold">{productName?.slice(0, 20)}</h4>
+          <p className="  tracking-tight ">{description?.slice(0, 20)}</p>
         </div>
         <div className="flex flex-col justify-center">
           <div className="text-base font-semibold items-start line-through"></div>

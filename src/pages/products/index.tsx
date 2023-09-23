@@ -9,6 +9,7 @@ const Products = () => {
   // custom logic to bring the product from the backend
   const [products, setProducts] = useState([]);
   
+
   useEffect(() => {
     // async function to the get the products
    const getProducts = async () => {
@@ -17,6 +18,8 @@ const Products = () => {
         setProducts(response.data.data);
       } catch (error) {
         console.log(error);
+      }
+      finally {
       }
     };
     getProducts();
