@@ -1,10 +1,13 @@
+'use client'
+
+import Image from 'next/image'
 import React from 'react'
 
 const Hero = () => {
   return (
     <section className=''>
     <div className=''>
-    <img className='min-h-full min-w-full' src="/hero.jpg" alt="hero img" />
+    <Image className='min-h-full min-w-full' src="/Hero.jpg" alt="hero img" height={200} width={100}/>
     </div>
     </section>
   )
