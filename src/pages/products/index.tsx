@@ -4,6 +4,7 @@ import Card from "../../components/Card";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { BASE_URL } from "../../utils/constants";
+import ChakraCardComponent from "../../components/ChakraCardComponent";
 
 const Products = () => {
   // custom logic to bring the product from the backend
@@ -30,8 +31,9 @@ const Products = () => {
     <div className="flex flex-wrap gap-4 justify-center mt-8 ">
       {products ? (
         products.slice(0,15).map((productDetails,i) => {
-          return (
-            <Card productDetails={productDetails} key={i}/>
+          return (<>
+            <ChakraCardComponent productDetails={productDetails} key={i}/>
+          </>
           );
         })
       ) : (

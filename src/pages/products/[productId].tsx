@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import ProductImgCarousel from "../../components/ProductImgCarousel";
 import { BASE_URL } from "../../utils/constants";
 import { ICardProps } from "../../interfaces/ICardProps";
+import { CircularProgress, CircularProgressLabel, Heading } from "@chakra-ui/react";
 
 const ProductDescription = () => {
   const router = useRouter();
@@ -33,7 +34,10 @@ const ProductDescription = () => {
   }, [isRouterReady]);
 
   return isLoading ? (
-    <h1 className="text-center">Loading...</h1>
+    <div className="text-center">
+      <Heading p="2px">Loading</Heading>
+      <CircularProgress isIndeterminate value={80} />
+    </div>
   ) : (
     <div className="sm:flex p-4">
       {/* Left Image carousel */}
