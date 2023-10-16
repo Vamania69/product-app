@@ -12,6 +12,6 @@ export type ICartProductProps = {
 
 
   export type ICartState = {
-    item: ICartProductProps[];
+    item: ICartProductProps[],
   };
 

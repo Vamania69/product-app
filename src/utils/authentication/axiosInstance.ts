@@ -9,7 +9,6 @@ let Token = null;
 if (!ISSERVER) {
   // Access localStorage
   Token = localStorage.getItem("Token");
-  console.log("Token", Token);
 }
 console.log(Token);
 const instance = axios.create({
@@ -34,8 +33,6 @@ instance.interceptors.request.use(
 );
 instance.interceptors.response.use(
   function (response) {
-    console.log(Token);
-
     switch (response.data.code) {
       case 200:
         console.log("Data load Sucessfull");
@@ -67,11 +64,14 @@ export default instance;
 
 // wrapper function
 
+// to get the user cart products
 export const get = async (url: string) => {
   const response = await instance.get(url);
   return response;
 };
 
+// to update the user cart with the added product
+// data is the product id
 export const post = async (url: string, data: any) => {
   const response = await instance.post(url, data);
   return response;

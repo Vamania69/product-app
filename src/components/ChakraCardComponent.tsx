@@ -17,7 +17,7 @@ import {
 import { ICardProps } from "../interfaces/ICardProps";
 import { ViewIcon } from "@chakra-ui/icons";
 import { FaShoppingCart } from "react-icons/fa";
-import {AiOutlineShoppingCart} from "react-icons/ai"
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../globalReduxStore/features/cart/cartStoreSlice";
@@ -32,12 +32,18 @@ export default function ChakraCardComponent({ productDetails }: ICardProps) {
     productImages,
     productId,
   } = productDetails;
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const addToCartHandler = (product:ICartProductProps) => {
+ type actionPayload = {
+  product: ICartProductProps,
+  qty: number
+ }
 
-    dispatch(addToCart(product))
-  }
+
+  const addToCartHandler = (product: actionPayload) => {
+    dispatch(addToCart(product));
+    console.log("product sent ")
+  };
   return (
     <Card p={"0px"} size={["sm", "md"]}>
       <Flex flexDir={{ md: "column" }} h="100%">
@@ -82,12 +88,12 @@ export default function ChakraCardComponent({ productDetails }: ICardProps) {
             </Link>
             <Button
               variant="ghost"
+              onClick={() => addToCartHandler({product: productDetails, qty: 1})}
             >
               {/* issue here color cannot be set to the icon as the color is predefined in the varient */}
               <FaShoppingCart /> Add to cart
               <AiOutlineShoppingCart />
             </Button>
-            <button onClick={()=>addToCartHandler(productDetails)}>Add to cart</button>
           </CardFooter>
         </Flex>
       </Flex>
