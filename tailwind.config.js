@@ -23,7 +23,7 @@ module.exports = {
         },
         card: {
           primary: "#3e2672 ",
-          secondary: "#5332981a",
+          secondary: "#3c21771a",
         },
         border: {
           primary: "#b29ae680",
