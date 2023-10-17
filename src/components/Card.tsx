@@ -28,7 +28,7 @@ export default function Card({productDetails}: ICardProps) {
           alt="product image"
         />
       </div>
-      <div className="px-2 md:px-8 p-2 md:py-6 md:pb-8 bg-gradient-to-b  from-card-primary to-[#3c21771a] rounded-r-lg md:rounded-none md:rounded-b-lg sm:none  max-h-[195px]">
+      <div className="px-2 md:px-8 p-2 md:py-6 md:pb-8 bg-gradient-to-b  from-card-primary to-card-secondary rounded-r-lg md:rounded-none md:rounded-b-lg sm:none  max-h-[195px]">
         <div>
           <h4 className="font-semibold">{productName?.slice(0, 20)}</h4>
           <p className="  tracking-tight ">{description?.slice(0, 20)}</p>
