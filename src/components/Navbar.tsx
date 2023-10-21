@@ -5,13 +5,10 @@ import Link from "next/link";
 import { FaCartPlus } from "react-icons/fa";
 import {
   Avatar,
-  AvatarBadge,
   Menu,
   MenuButton,
-  MenuGroup,
   MenuList,
   MenuItem,
-  MenuDivider,
   Button,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";

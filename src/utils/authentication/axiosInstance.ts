@@ -76,3 +76,5 @@ export const post = async (url: string, data: any) => {
   const response = await instance.post(url, data);
   return response;
 };
+
+// warpper function to register user

@@ -23,10 +23,6 @@ export default function Cart() {
     setIsUserLoggedIn(userLoggedInStatus);
   }, [userLoggedInStatus, cartProducts]);
   
-  
-  useEffect(() => {
-  
-  }, []);
 
   return (
     <>

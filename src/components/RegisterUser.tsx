@@ -16,8 +16,9 @@ import {
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import Link from "next/link";
+import { post } from "../utils/authentication/axiosInstance";
 export default function RegisterUser() {
-  const [RegisterUserDetails, setRegisterUserDetails] = useState({
+  const [registerUserDetails, setRegisterUserDetails] = useState({
     userEmail: "",
     password: "",
     role: "user",
@@ -26,21 +27,23 @@ export default function RegisterUser() {
   const RegisterInputHandler = (e) => {
     e.preventDefault();
     setRegisterUserDetails({
-      ...RegisterUserDetails,
+      ...registerUserDetails,
       [e.target.name]: e.target.value,
     });
-    console.log(RegisterUserDetails);
+    console.log(registerUserDetails);
   };
 
   const SubmitHandler = async () => {
     try {
-      const response = await axios.post(
+      // using the axios instance wrapper function to register the user
+      const response = await post(
         `${BASE_URL}/auth/register`,
-        RegisterUserDetails
+        registerUserDetails
       );
       console.log(response.data);
+      // reset the input fields
       setRegisterUserDetails({
-        ...RegisterUserDetails,
+        ...registerUserDetails,
         userEmail: "",
         password: "",
       });
@@ -59,7 +62,7 @@ export default function RegisterUser() {
             <Input
               type="email"
               name="userEmail"
-              value={RegisterUserDetails.userEmail}
+              value={registerUserDetails.userEmail}
               onChange={RegisterInputHandler}
             />
           </FormControl>
@@ -68,7 +71,7 @@ export default function RegisterUser() {
             <Input
               type="password"
               name="password"
-              value={RegisterUserDetails.password}
+              value={registerUserDetails.password}
               onChange={RegisterInputHandler}
             />
           </FormControl>

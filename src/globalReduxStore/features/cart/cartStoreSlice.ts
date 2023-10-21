@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ICartProductProps } from "../../../interfaces/ICartProductProps";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { post } from "../../../utils/authentication/axiosInstance";
-
+import { useToast } from "@chakra-ui/react";
 // const initialState: ICartState = {
 //   item: [],
 // };
@@ -21,12 +21,10 @@ let initialState: userState = [];
 
  const updateCart = async (productId : string)=>{
    // get the product id and send it to the server as a object 
-   const response = await post("/user/cart",{productId : productId })
-  //  console.log(response)
-
+   const response = await post("/user/cart",{productId})
+   //  console.log(response)
  }
-
-
+ 
 // user cart slice
 export const userCartSlice = createSlice({
   initialState,
@@ -42,22 +40,22 @@ export const userCartSlice = createSlice({
         if (
           state.find(
             (product) =>
-              product.product.productId === action.payload.product.productId
+              product.product?.productId === action?.payload?.product?.productId
           )
         ) {
           state.forEach((product) => {
             if (
-              product.product.productId === action.payload.product.productId
+              product.product?.productId === action?.payload?.product?.productId
             ) {
-              product.qty = product.qty + action.payload.qty;
+              product.qty = product.qty + action?.payload?.qty;
               // update the database
-               updateCart(product.product.productId);
+               updateCart(product.product?.productId);
             }
           });
         } else {
-          state.push(action.payload);
+          state.push(action?.payload);
           // update the database
-          updateCart(action.payload.product.productId);
+          updateCart(action?.payload?.product?.productId);
         }
       }
     },
