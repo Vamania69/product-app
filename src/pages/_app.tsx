@@ -7,6 +7,8 @@ import { buttonTheme } from "../styles/components/ButtonStyles";
 import { HeadingTheme } from "../styles/components/HeadingStyle";
 import { Provider } from "react-redux";
 import { store } from "../globalReduxStore/store";
+import "../styles/globals.css";
+
 export default function App({ Component, pageProps }) {
   const theme = extendTheme(
     { components: { Card: cardTheme } },
@@ -15,7 +17,7 @@ export default function App({ Component, pageProps }) {
   );
 
   return (
-    <div className="bg-dark-primary">
+    <div  className="bg_primary">
       <ChakraProvider theme={theme}>
         <Provider store={store}>
           <Navbar />
