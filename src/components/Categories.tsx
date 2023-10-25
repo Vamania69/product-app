@@ -26,7 +26,7 @@ export default function Categories() {
       <div className="flex gap-4 mt-8 flex-wrap pb-10 justify-center">
         {categories?.slice(0, 5).map((category) => {
           return (
-            <Link
+            <Link        // provideing the link to the category page with the category name and id as query params
               href={{
                 pathname: `/category/[category]`,
                 query: {
