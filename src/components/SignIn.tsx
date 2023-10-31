@@ -14,7 +14,6 @@ import {
   Image,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -52,7 +51,7 @@ export default function SignIn() {
   const submitHandler = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.post(`${BASE_URL}/auth/login`, loginDetails);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`, loginDetails);
       console.log("user logged in sucessfull");
       setLoginDetails({ ...loginDetails, userEmail: "", password: "" });
       if (response.status === 200) {

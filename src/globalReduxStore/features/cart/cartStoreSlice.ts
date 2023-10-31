@@ -21,7 +21,12 @@ let initialState: userState = [];
 
  const updateCart = async (productId : string)=>{
    // get the product id and send it to the server as a object 
-   const response = await post("/user/cart",{productId})
+   try {
+     const response = await post("/user/cart",{productId})
+   } catch (error) {
+    console.log("error while updating the cart", error)
+   }
+   
    //  console.log(response)
  }
  
@@ -38,7 +43,7 @@ export const userCartSlice = createSlice({
       // check weather product exits in the cart or not
       else {
         if (
-          state.find(
+          state.find( 
             (product) =>
               product.product?.productId === action?.payload?.product?.productId
           )

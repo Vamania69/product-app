@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import ProductImgCarousel from "../../components/ProductImgCarousel";
-import { BASE_URL } from "../../utils/constants";
 import { ICardProps } from "../../interfaces/ICardProps";
 import IsLoadingComponent from "../../components/sharedComponents/IsLoadingComponent";
 
@@ -21,7 +20,7 @@ const ProductDescription = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `${BASE_URL}/products/?productId=${productId}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/products/?productId=${productId}`
         );
         setProductDetails(response.data.data);
       } catch (error) {

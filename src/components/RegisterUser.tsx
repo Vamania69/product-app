@@ -13,8 +13,6 @@ import {
   Stack,
   Image,
 } from "@chakra-ui/react";
-import axios from "axios";
-import { BASE_URL } from "../utils/constants";
 import Link from "next/link";
 import { post } from "../utils/authentication/axiosInstance";
 export default function RegisterUser() {
@@ -37,7 +35,7 @@ export default function RegisterUser() {
     try {
       // using the axios instance wrapper function to register the user
       const response = await post(
-        `${BASE_URL}/auth/register`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/register`,
         registerUserDetails
       );
       console.log(response.data);
