@@ -3,7 +3,6 @@
 import Card from "../../components/Card";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { BASE_URL } from "../../utils/constants";
 import ChakraCardComponent from "../../components/ChakraCardComponent";
 
 const Products = () => {
@@ -15,7 +14,7 @@ const Products = () => {
     // async function to the get the products
    const getProducts = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/products`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/products`);
         setProducts(response.data.data);
       } catch (error) {
         console.log(error);

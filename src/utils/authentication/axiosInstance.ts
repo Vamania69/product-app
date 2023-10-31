@@ -1,7 +1,6 @@
 "use client";
 
 import axios from "axios";
-import { BASE_URL } from "../constants";
 
 const ISSERVER = typeof window === "undefined";
 let Token = null;
@@ -12,7 +11,7 @@ if (!ISSERVER) {
 }
 console.log(Token);
 const instance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     "Access-Control-Allow-Origin": "*",
   },
