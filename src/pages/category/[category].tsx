@@ -5,36 +5,46 @@ import React, { useEffect, useState } from "react";
 
 export default function ProductsByCategoryId() {
   const router = useRouter();
+  // category State and category ID
   const [categoryProducts, setCategoryProducts] = useState([]);
   const { categoryId } = router.query;
 
-
+  // loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   // fetch method
   useEffect(() => {
     // async call to fetch products related to the category by category ID
     const getProductsById = async () => {
+      setIsLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/products?categoryId=${categoryId}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/products?categoryId=${categoryId}`
         );
-        console.log(response.data.data);
         setCategoryProducts(response.data.data);
+
       } catch (error) {
         console.log(error);
+      } finally {
+        // always runs
+        setIsLoading(false);
       }
     };
     getProductsById();
-  }, [router.isReady]);
+  }, [router.isReady, categoryId]);
 
-  
   return (
-    <div className="flex flex-wrap p-8 ">
-      {!!categoryProducts
-        ? categoryProducts.map((product) => {
-            return <Card key={product.productId} productDetails={product} />;
-          })
-        : null}
-    </div>
+    <>
+      {!!isLoading ? (
+        <h1 className="text-center ">The product are loading</h1>
+      ) : (
+        <div className="flex flex-wrap p-8 ">
+          {!!categoryProducts &&
+            categoryProducts.map((product) => {
+              return <Card key={product.productId} productDetails={product} />;
+            })}
+        </div>
+      )}
+    </>
   );
 }
