@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import ProductImgCarousel from "../../components/ProductImgCarousel";
-import { BASE_URL } from "../../utils/constants";
 import { ICardProps } from "../../interfaces/ICardProps";
-import { CircularProgress, CircularProgressLabel, Heading } from "@chakra-ui/react";
+import IsLoadingComponent from "../../components/sharedComponents/IsLoadingComponent";
 
 const ProductDescription = () => {
   const router = useRouter();
@@ -21,7 +20,7 @@ const ProductDescription = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `${BASE_URL}/products/?productId=${productId}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/products/?productId=${productId}`
         );
         setProductDetails(response.data.data);
       } catch (error) {
@@ -34,10 +33,7 @@ const ProductDescription = () => {
   }, [isRouterReady]);
 
   return isLoading ? (
-    <div className="text-center">
-      <Heading p="2px">Loading</Heading>
-      <CircularProgress isIndeterminate value={80} />
-    </div>
+   <IsLoadingComponent isLoading = {isLoading} />
   ) : (
     <div className="sm:flex p-4">
       {/* Left Image carousel */}
@@ -45,7 +41,7 @@ const ProductDescription = () => {
         {!!productDetails && (
           <>
             {/* passed the array of object images */}
-            <ProductImgCarousel productImages={productDetails?.productImages} />
+            <ProductImgCarousel  productImages={productDetails?.productImages} />
           </>
         )}
       </div>

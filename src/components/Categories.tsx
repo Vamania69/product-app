@@ -2,7 +2,6 @@ import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { BASE_URL } from "../utils/constants";
 export default function Categories() {
   // product categories 
   const [categories, setCategories] = useState([]);
@@ -11,7 +10,7 @@ export default function Categories() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/categories`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/categories`);
         setCategories(response.data.data);
       } catch (error) {
         console.log(error)
@@ -26,7 +25,7 @@ export default function Categories() {
       <div className="flex gap-4 mt-8 flex-wrap pb-10 justify-center">
         {categories?.slice(0, 5).map((category) => {
           return (
-            <Link
+            <Link        // provideing the link to the category page with the category name and id as query params
               href={{
                 pathname: `/category/[category]`,
                 query: {

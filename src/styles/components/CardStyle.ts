@@ -34,7 +34,6 @@ const sizes = {
     // medium size
   md: definePartsStyle({
     container: {
-      borderRadius: "5px",
     },
   }),
  // smaller size 
@@ -42,7 +41,6 @@ const sizes = {
     // container styling in the smaller screen
     container: {
       padding: "10px",
-      borderRadius: "5px",
     },
     // heading styling in the smaller screen
     header:{
