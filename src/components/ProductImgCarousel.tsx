@@ -12,7 +12,7 @@ export default function ProductImgCarousel({ productImages }: iImageProps) {
   useEffect(() => {
     // setImagesUrls return the string array of images url 
     setImagesUrls(getImageUrl({ productImages }));
-  }, []);
+  }, [productImages]);
   return (
     <div>
       <Carousel>

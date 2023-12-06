@@ -5,6 +5,7 @@ import ChakraCardComponent from "../components/ChakraCardComponent";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../globalReduxStore/store";
 import Link from "next/link";
+import { Button } from "@chakra-ui/react";
 export default function Cart() {
 
   // global initialState of the user login
@@ -29,8 +30,8 @@ export default function Cart() {
       {isUserLoggedIn ? (
         <>
           {" "}
-          <div className="flex flex-wrap gap-4 justify-center mt-8 ">
-            {userCart ? (
+          <div className="flex flex-wrap gap-4 justify-center mt-8 h-[90vh] ">
+            {userCart.length >0  ? (
               userCart?.map((productDetails, i) => {
                 return (
                   <ChakraCardComponent
@@ -40,16 +41,16 @@ export default function Cart() {
                 );
               })
             ) : (
-              <h2>The cart is empty :</h2>
+              <h2 className="min-h-max flex justify-center items-center">The cart is empty :</h2>
             )}
           </div>
         </>
       ) : (
         <>
           <div className="flex flex-col justify-center items-center min-h-[90vh]">
-            <h1 className="text-center">You need to log in to access cart</h1>
+            <h1 className="text-center">You need to log in to access cart:(</h1>
             <Link href="/userAuth/login">
-              <button className="btn-secondary">click to login</button>
+              <Button className="btn-secondary">Click to login</Button>
             </Link>
           </div>
         </>

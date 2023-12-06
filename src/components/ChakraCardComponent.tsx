@@ -45,9 +45,12 @@ export default function ChakraCardComponent({ productDetails }: ICardProps) {
     console.log("product sent ")
   };
   return (
-    <Card p={"0px"} size={["sm", "md"]}>
-      <Flex flexDir={{ md: "column" }} h="100%">
-        <Link href={`/products/${productId}`}>
+    <Card p={"0px"}  >
+      <Flex flexDir={{ base: "column" }} h="100%">
+        <Link
+          href={`/products/${productId}`}
+         
+        >
           {" "}
           <CardHeader
             w="100%"
@@ -56,19 +59,24 @@ export default function ChakraCardComponent({ productDetails }: ICardProps) {
             borderTopStartRadius={"lg"}
             display={"flex"}
             justifyContent={"center"}
+            alignItems={"center"}
+            height={{ sm:"200px"}}
+            maxH={{ base: "120px", sm: "200px" }}
           >
             <Image
-              minW={{ base: "100px", md: "200px" }}
-              maxH={{ base: "100px", md: "200px" }}
+              minW={{ base: "100px", sm: "200px" }}
+              maxH={{ base: "100px", sm: "200px" }}
               src={`${productImages[0].productImageUrl}`}
               alt="Green double couch with wooden legs"
-              borderTopEndRadius="lg"
-              borderTopStartRadius={"lg"}
               p={"0px"}
             />
           </CardHeader>
         </Link>
-        <Flex flexDir={"column"}>
+        <Flex
+          flexDir={"column"}
+          justifyContent={"space-between"}
+          height={"inherit"}
+        >
           <CardBody>
             <Stack m="1rem" spacing="1" mb={"0px"}>
               <Heading size={{ md: "md" }}>{productName?.slice(0, 20)}</Heading>
@@ -78,8 +86,8 @@ export default function ChakraCardComponent({ productDetails }: ICardProps) {
                 Rs. {originalPrice}
               </Text>
             </Stack>
-            <Divider borderColor={"grey"} mx={"5px"} />
           </CardBody>
+          <Divider borderColor={"grey"} mx={"5px"} />
           <CardFooter justifyContent={"space-around"} alignItems={"center"}>
             <Link href={`/products/${productId}`}>
               <Button variant="solid">
@@ -88,11 +96,13 @@ export default function ChakraCardComponent({ productDetails }: ICardProps) {
             </Link>
             <Button
               variant="ghost"
-              onClick={() => addToCartHandler({product: productDetails, qty: 1})}
+              onClick={() =>
+                addToCartHandler({ product: productDetails, qty: 1 })
+              }
             >
               {/* issue here color cannot be set to the icon as the color is predefined in the varient */}
-              <FaShoppingCart /> Add to cart
-              <AiOutlineShoppingCart />
+              Add to cart
+              <FaShoppingCart />
             </Button>
           </CardFooter>
         </Flex>

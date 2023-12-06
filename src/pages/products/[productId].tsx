@@ -30,7 +30,7 @@ const ProductDescription = () => {
       }
     };
     fetchData();
-  }, [isRouterReady]);
+  }, [isRouterReady, productId]);
 
   return isLoading ? (
    <IsLoadingComponent isLoading = {isLoading} />

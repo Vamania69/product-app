@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../globalReduxStore/store";
 import { userLoggedOut } from "../../globalReduxStore/features/userLoginStatus/userLoginSlice";
-
+import UserProfile from "../../components/UserProfile";
 const Login = () => {
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const Login = () => {
   useEffect(() => {
     // set the userLoggedIn status
     setUserLoggedIn(userLoginStatus.isUserLoggedIn);
-  }, [userLoggedIn]);
+  }, [userLoginStatus.isUserLoggedIn]);
 
   // localStorage.setItem("Token", `${login.data.data.accessToken}`);
   return (
@@ -37,6 +37,7 @@ const Login = () => {
         <>
           <div>User is Logged in sucessfully </div>
           <button onClick={logoutDispatchHandler}>Logout</button>
+          <UserProfile />
         </>
       ) : (
         <SignIn />

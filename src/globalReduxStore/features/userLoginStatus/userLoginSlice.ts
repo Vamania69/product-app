@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { createSlice } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 
 const ISSERVER = typeof window === "undefined";
 
@@ -8,11 +9,14 @@ const initialState = {
   isUserLoggedIn: false,
 };
 
+
 if (!ISSERVER) {
   // check Access token in localStorage
   initialState.isUserLoggedIn = !!window.localStorage.getItem("Token");
   //   console.log("Token", isLoggedIn);
 }
+
+
 
 export const userLoginSlice = createSlice({
   name: "userLoggedIn",

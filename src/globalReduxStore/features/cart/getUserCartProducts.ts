@@ -10,6 +10,7 @@ export function useGetUserProducts() {
 
   useEffect(() => {
     if (isUserLoggedIn) {
+      console.log(isUserLoggedIn)
       const fetchData = async () => {
         try {
           const data = await getUserCartProducts();
@@ -40,6 +41,9 @@ export const getUserCartProducts = async () => {
     return null;
   }
 };
+
+
+
 
 export default useGetUserProducts;
 

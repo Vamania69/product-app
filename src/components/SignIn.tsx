@@ -110,7 +110,7 @@ export default function SignIn() {
               </Stack>
               <Link href="/userAuth/register">
                 {" "}
-                <Text color={"blue.500"}>Didn't have account ! Create one</Text>
+                <Text color={"blue.500"}>Didn t have account ! Create one</Text>
               </Link>
               <Button
                 colorScheme={"blue"}

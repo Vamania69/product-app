@@ -42,14 +42,14 @@ export const userCartSlice = createSlice({
       }
       // check weather product exits in the cart or not
       else {
-        if (
+        if (  
           state.find( 
             (product) =>
               product.product?.productId === action?.payload?.product?.productId
           )
         ) {
           state.forEach((product) => {
-            if (
+            if (   // if the product exits in the cart then update the quantity
               product.product?.productId === action?.payload?.product?.productId
             ) {
               product.qty = product.qty + action?.payload?.qty;
@@ -57,7 +57,7 @@ export const userCartSlice = createSlice({
                updateCart(product.product?.productId);
             }
           });
-        } else {
+        } else { // if the product does not exits in the cart then push the productId  in the cart 
           state.push(action?.payload);
           // update the database
           updateCart(action?.payload?.product?.productId);

@@ -2,6 +2,8 @@ import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+// import CategoryProductCarousel from "./sharedComponents/CategoryCarouselChakra";
+import CategoryCarouselChakra from "./sharedComponents/CategoryCarouselChakra";
 export default function Categories() {
   // product categories 
   const [categories, setCategories] = useState([]);
@@ -25,12 +27,12 @@ export default function Categories() {
       <div className="flex gap-4 mt-8 flex-wrap pb-10 justify-center">
         {categories?.slice(0, 5).map((category) => {
           return (
-            <Link        // provideing the link to the category page with the category name and id as query params
+            <Link // provideing the link to the category page with the category name and id as query params
               href={{
                 pathname: `/category/[category]`,
                 query: {
                   category: category?.categoryName,
-                  categoryId: category?.categoryId
+                  categoryId: category?.categoryId,
                 },
               }}
               key={category.categoryId}
